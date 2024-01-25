@@ -19,6 +19,8 @@
 		"@rollup/plugin-virtual": "^3.0.2",
 		"@rollup/pluginutils": "^5.1.0",
 		"fast-glob": "^3.3.2",
+		"husky": "^9.0.5",
+		"lint-staged": "^15.2.0",
 		"mwc3-back-helpers": "^1.0.2",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.12",
@@ -37,5 +39,9 @@
 				"lib"
 			]
 		}
+	},
+	"lint-staged": {
+		"**/*.{md}": "prettier --single-quote --no-bracket-spacing --write"
 	}
 }
+
