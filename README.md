@@ -70,13 +70,9 @@ Sometimes your app needs some filled icons, you can write the following to instr
 npm i -D vite-plugin-mdicon2svg
 ```
 
-<!--
 ## Known limitations
 
 - This plugin relies on `lit-html`, and the SVGs are wrapped inside `html` tagged templates. That means you will need `lit-html` (or `lit`) installed in your project. That also means icons in raw html files won't get inlined.
-
-lint
--->
 
 ## License
 
