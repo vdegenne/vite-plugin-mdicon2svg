@@ -1,0 +1,41 @@
+{
+	"name": "vite-plugin-mdicon2svg",
+	"description": "Plugin to transform md-icon to svgs",
+	"type": "module",
+	"main": "./lib/index.js",
+	"module": "./lib/index.js",
+	"tyeps": "./lib/index.d.ts",
+	"exports": {
+		".": {
+			"default": "./lib/index.js",
+			"types": "./lib/index.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "wireit"
+	},
+	"files": [],
+	"devDependencies": {
+		"@rollup/plugin-virtual": "^3.0.2",
+		"@rollup/pluginutils": "^5.1.0",
+		"fast-glob": "^3.3.2",
+		"mwc3-back-helpers": "^1.0.2",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.12",
+		"vite-plugin-virtual": "^0.2.0",
+		"wireit": "^0.14.3"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsc --pretty",
+			"clean": "if-file-deleted",
+			"files": [
+				"tsconfig.json",
+				"src"
+			],
+			"output": [
+				"lib"
+			]
+		}
+	}
+}
