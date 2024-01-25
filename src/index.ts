@@ -3,6 +3,7 @@ import {createFilter} from '@rollup/pluginutils';
 import {Variant} from 'mwc3-back-helpers';
 import type {Plugin, ResolvedConfig} from 'vite';
 import {log, setDebug} from './logger.js';
+import {removeSymbolsLink} from './transformation.js';
 import {type MdIcon2SvgOptions} from './types.js';
 import {
 	MD_ICON_REGEX,
@@ -96,7 +97,7 @@ export async function mdicon2svg(
 				command = config.command;
 			},
 
-			async transformIndexHtml() {
+			async transformIndexHtml(html) {
 				// Run only in dev mode
 				if (command == 'serve' && options.devMode) {
 					log('=== TRANSFORMINDEXHTML HOOK');
@@ -111,6 +112,8 @@ export async function mdicon2svg(
 					for (const icon of icons) {
 						icon.svg = getCachedSvg(icon.name, options.variant!, icon.fill);
 					}
+				} else if (command == 'build') {
+					return removeSymbolsLink(html);
 				}
 			},
 
