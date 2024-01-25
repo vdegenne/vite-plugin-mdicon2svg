@@ -1,6 +1,12 @@
 # vite-plugin-mdicon2svg
 
-Inline svgs in place of `<md-icon>` in your project.
+Inline SVGs in place of `<md-icon>` in your project.
+
+Key features:
+
+- 📥 SVGs are cached to minimize network solicitation
+- 🌐 SVGs are module-virtualized to avoid inline duplication and to help code-splitting.
+- 🛠️ Some options to customize the SVGs and/or match your needs.
 
 ## Usage
 
@@ -37,6 +43,26 @@ And add the following to your html to display the icons:
 ```
 
 _(note: it's important to include `id="symbols"` in the tag here to inform the plugin to remove this link at build time.)_
+
+### Variant
+
+You can pass the variant you want in the options:
+
+```js
+plugins: [
+	mdicon2svg({
+		variant: 'rounded', // 'outlined' by default
+	}),
+];
+```
+
+### Fill
+
+Sometimes your app needs some filled icons, you can write the following to instruct the plugin to inline the correct icon:
+
+```html
+<md-icon fill>star</md-icon> ⭐😄👍
+```
 
 ### Install
 
