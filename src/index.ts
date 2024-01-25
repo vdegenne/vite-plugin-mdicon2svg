@@ -24,7 +24,7 @@ import {
 export async function mdicon2svg(
 	options: Partial<MdIcon2SvgOptions> = {},
 ): Promise<Plugin[]> {
-	// Should analyze the source here.
+	// Defaults
 	options.include ??= 'src/**/*.{js,ts,jsx,tsx}';
 	options.variant ??= Variant.OUTLINED;
 	options.devMode ??= false;
@@ -95,6 +95,23 @@ export async function mdicon2svg(
 			configResolved(resolvedConfig) {
 				config = resolvedConfig;
 				command = config.command;
+			},
+
+			async buildStart() {
+				if (command == 'build') {
+					log('=== BUILDSTART HOOK');
+					const icons = await findIconsInFiles(
+						options.include!,
+						options.includeComments,
+					);
+					if (!dataIsEqual(icons, lastFoundIcons)) {
+						await updateVersion(icons);
+					}
+					// Fill in the svgs for easy access in subroutines
+					for (const icon of icons) {
+						icon.svg = getCachedSvg(icon.name, options.variant!, icon.fill);
+					}
+				}
 			},
 
 			async transformIndexHtml(html) {
@@ -173,7 +190,7 @@ export async function mdicon2svg(
 										'`;',
 								)
 								.join('\n');
-						// TODO: should probably flush the previous cached virtual modules
+						// TODO: Should probably flush the previous cached versions
 						// console.log(icons);
 					}
 					return `\0${id}`;
