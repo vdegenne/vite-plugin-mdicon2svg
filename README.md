@@ -44,6 +44,8 @@ And add the following to your html to display the icons:
 
 _(note: it's important to include `id="symbols"` in the tag here to inform the plugin to remove this link at build time.)_
 
+Now you can dev using normal symbols and at build time SVGs will be [downloaded] and inlined.
+
 ### Variant
 
 You can pass the variant you want in the options:
