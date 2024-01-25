@@ -4,7 +4,7 @@
 	"type": "module",
 	"main": "./lib/index.js",
 	"module": "./lib/index.js",
-	"tyeps": "./lib/index.d.ts",
+	"types": "./lib/index.d.ts",
 	"exports": {
 		".": {
 			"default": "./lib/index.js",
@@ -12,7 +12,8 @@
 		}
 	},
 	"scripts": {
-		"build": "wireit"
+		"build": "wireit",
+		"prepare": "husky"
 	},
 	"files": [],
 	"devDependencies": {
@@ -24,7 +25,6 @@
 		"mwc3-back-helpers": "^1.0.2",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.12",
-		"vite-plugin-virtual": "^0.2.0",
 		"wireit": "^0.14.3"
 	},
 	"wireit": {
@@ -41,7 +41,6 @@
 		}
 	},
 	"lint-staged": {
-		"**/*.{md}": "prettier --single-quote --no-bracket-spacing --write"
+		"README.md": "prettier --single-quote --no-bracket-spacing --no-use-tabs --write"
 	}
 }
-
