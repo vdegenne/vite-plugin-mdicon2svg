@@ -14,7 +14,7 @@ Key features:
 import {mdicon2svg} from 'vite-plugin-mdicon2svg';
 
 export default defineConfig({
-	plugins: [mdicon2svg({devMode: true})],
+  plugins: [mdicon2svg({devMode: true})],
 });
 ```
 
@@ -34,11 +34,11 @@ And add the following to your html to display the icons:
 
 ```html
 <head>
-	<link
-		id="symbols"
-		href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-		rel="stylesheet"
-	/>
+  <link
+    id="symbols"
+    href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    rel="stylesheet"
+  />
 </head>
 ```
 
@@ -50,9 +50,9 @@ You can pass the variant you want in the options:
 
 ```js
 plugins: [
-	mdicon2svg({
-		variant: 'rounded', // 'outlined' by default
-	}),
+  mdicon2svg({
+    variant: 'rounded', // 'outlined' by default
+  }),
 ];
 ```
 
@@ -74,6 +74,8 @@ npm i -D vite-plugin-mdicon2svg
 ## Known limitations
 
 - This plugin relies on `lit-html`, and the SVGs are wrapped inside `html` tagged templates. That means you will need `lit-html` (or `lit`) installed in your project. That also means icons in raw html files won't get inlined.
+
+lint
 -->
 
 ## License
