@@ -1,16 +1,12 @@
-import {ResolvedConfig, type Plugin} from 'vite';
-import {MdIcon2SvgOptions} from './types.js';
 import virtual from '@rollup/plugin-virtual';
+import {createFilter} from '@rollup/pluginutils';
+import {Variant} from 'mwc3-back-helpers';
+import type {Plugin, ResolvedConfig} from 'vite';
+import {log, setDebug} from './logger.js';
+import {type MdIcon2SvgOptions} from './types.js';
 import {
-	MdIconName,
-	Variant,
-	findElementsFromFiles,
-	findIconNamesFromContent,
-	findIconNamesFromFiles,
-} from 'mwc3-back-helpers';
-import {
-	IconData,
 	MD_ICON_REGEX,
+	cache,
 	dataIsEqual,
 	fetchSvg,
 	findIconsInContent,
@@ -18,15 +14,11 @@ import {
 	getCachedSvg,
 	loadCache,
 	nameToConstant,
-	readdir,
 	saveCache,
 	setCache,
 	stripCommentsFromContent,
+	type IconData,
 } from './utils.js';
-import {type Cache} from './types.js';
-import {createFilter} from '@rollup/pluginutils';
-import {cache} from './utils.js';
-import {log, setDebug} from './logger.js';
 
 export async function mdicon2svg(
 	options: Partial<MdIcon2SvgOptions> = {},
