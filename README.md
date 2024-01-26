@@ -6,7 +6,7 @@ Key features:
 
 - 📥 SVGs are cached to minimize network solicitation
 - 🌐 SVGs are module-virtualized to avoid inline duplication and to help code-splitting.
-- 🛠️ Some options to customize the SVGs and/or match your needs.
+- 🛠️ Some options to customize the SVGs and/or match your configuration needs.
 
 ## Usage
 

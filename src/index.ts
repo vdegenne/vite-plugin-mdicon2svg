@@ -42,7 +42,7 @@ export async function mdicon2svg(
 		},
 	);
 
-	// Will hold the svg of icons found in the source
+	// Will hold the content of current module version.
 	const icons = {};
 	let virtualVersion = 1;
 

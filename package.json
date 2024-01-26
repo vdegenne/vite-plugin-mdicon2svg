@@ -1,7 +1,7 @@
 {
 	"name": "vite-plugin-mdicon2svg",
 	"description": "Vite plugin to transform md-icon to svgs",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"type": "module",
 	"main": "./lib/index.js",
 	"module": "./lib/index.js",
@@ -12,6 +12,18 @@
 			"types": "./lib/index.d.ts"
 		}
 	},
+	"keywords": [
+		"vite",
+		"vite-plugin",
+		"material-3",
+		"material-web-components",
+		"mwc",
+		"optimization"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vdegenne/vite-plugin-mdicon2svg"
+	},
 	"scripts": {
 		"build": "wireit",
 		"prepare": "husky"
@@ -20,6 +32,7 @@
 		"/lib"
 	],
 	"devDependencies": {
+		"@changesets/cli": "^2.27.1",
 		"fast-glob": "^3.3.2",
 		"husky": "^9.0.5",
 		"lint-staged": "^15.2.0",
