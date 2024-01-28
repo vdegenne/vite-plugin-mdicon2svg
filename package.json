@@ -1,7 +1,7 @@
 {
 	"name": "vite-plugin-mdicon2svg",
 	"description": "Vite plugin to transform md-icon to svgs",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"main": "./lib/index.js",
 	"module": "./lib/index.js",
