@@ -46,9 +46,12 @@ export interface IconData {
 	svg?: string;
 }
 
+/**
+ * This function returns a *distinct* list.
+ */
 export function findIconsInContent(
 	content: string,
-	includeComments = false,
+	includeComments = false
 ): IconData[] {
 	let icons: IconData[] = [];
 	if (!includeComments) {
@@ -56,22 +59,23 @@ export function findIconsInContent(
 	}
 	const matches = content.matchAll(MD_ICON_REGEX);
 	for (const match of matches) {
-		const name = match[2];
+		const name = match[2] as MdIconName;
 		// Not a valid icon name, passing
 		if (!(name in CodePointsMap)) {
 			continue;
 		}
-		icons.push({
-			name: match[2] as MdIconName,
-			fill: match[1].toLowerCase().includes('fill'),
-		});
+		const fill = match[1].toLowerCase().includes('fill');
+		if (icons.findIndex((i) => i.name == name && i.fill == fill) >= 0) {
+			continue;
+		}
+		icons.push({name, fill});
 	}
 	return icons;
 }
 
 export async function findIconsInFiles(
 	glob: string | string[],
-	includeComments = false,
+	includeComments = false
 ) {
 	const files = await readdir(glob);
 	let icons: IconData[] = [];
@@ -81,8 +85,8 @@ export async function findIconsInFiles(
 				new Promise<IconData[]>(async (resolve, _reject) => {
 					const content = (await readFile(filepath)).toString();
 					resolve(findIconsInContent(content, includeComments));
-				}),
-		),
+				})
+		)
 	);
 	return unifyIconData(result.flat());
 }
@@ -104,19 +108,21 @@ export function dataIsEqual(data1: IconData[], data2: IconData[]) {
 		data1.every(
 			(icon) =>
 				data2.findIndex((i) => icon.name === i.name && icon.fill === i.fill) >=
-				0,
+				0
 		)
 	);
 }
 
 function generateSvgFetchUrl(iconName: string, variant: Variant, fill = false) {
-	return `https://fonts.gstatic.com/s/i/short-term/release/materialsymbols${variant}/${iconName}${fill ? '/fill1' : '/default'}/24px.svg`;
+	return `https://fonts.gstatic.com/s/i/short-term/release/materialsymbols${variant}/${iconName}${
+		fill ? '/fill1' : '/default'
+	}/24px.svg`;
 }
 
 export async function fetchSvg(
 	iconName: string,
 	variant: Variant,
-	fill = false,
+	fill = false
 ) {
 	const res = await fetch(generateSvgFetchUrl(iconName, variant, fill));
 	return await res.text();
@@ -128,6 +134,6 @@ export function nameToConstant(iconName: string, fill = false) {
 
 export function getCachedSvg(iconName: string, variant: Variant, fill = false) {
 	return cache[variant]?.find(
-		(icon) => icon.name === iconName && icon.fill === fill,
+		(icon) => icon.name === iconName && icon.fill === fill
 	)?.svg;
 }

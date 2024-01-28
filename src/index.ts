@@ -22,7 +22,7 @@ import {
 } from './utils.js';
 
 export async function mdicon2svg(
-	options: Partial<MdIcon2SvgOptions> = {},
+	options: Partial<MdIcon2SvgOptions> = {}
 ): Promise<Plugin[]> {
 	// Defaults
 	options.include ??= 'src/**/*.{js,ts,jsx,tsx}';
@@ -39,7 +39,7 @@ export async function mdicon2svg(
 		(await loadCache()) ?? {
 			// No cache yet default
 			variant: options.variant,
-		},
+		}
 	);
 
 	// Will hold the content of current module version.
@@ -57,7 +57,7 @@ export async function mdicon2svg(
 		const missingSvgs = data.filter((icon) => {
 			return !(
 				cache[options.variant!]!.findIndex(
-					(i) => i.name == icon.name && i.fill == icon.fill && i.svg,
+					(i) => i.name == icon.name && i.fill == icon.fill && i.svg
 				) >= 0
 			);
 		});
@@ -69,19 +69,19 @@ export async function mdicon2svg(
 						missing.svg = await fetchSvg(
 							missing.name,
 							options.variant!,
-							missing.fill,
+							missing.fill
 						);
 						// Push the data if the icon is not already in the cache
 						if (
 							cache[options.variant!]!.findIndex(
-								(i) => missing.name == i.name && missing.fill == i.fill,
+								(i) => missing.name == i.name && missing.fill == i.fill
 							) === -1
 						) {
 							cache[options.variant!]!.push(missing);
 						}
 						resolve(null);
-					}),
-			),
+					})
+			)
 		);
 		await saveCache(cache);
 		// We update the virtual module version
@@ -102,7 +102,7 @@ export async function mdicon2svg(
 					log('=== BUILDSTART HOOK');
 					const icons = await findIconsInFiles(
 						options.include!,
-						options.includeComments,
+						options.includeComments
 					);
 					if (!dataIsEqual(icons, lastFoundIcons)) {
 						await updateVersion(icons);
@@ -120,7 +120,7 @@ export async function mdicon2svg(
 					log('=== TRANSFORMINDEXHTML HOOK');
 					const icons = await findIconsInFiles(
 						options.include!,
-						options.includeComments,
+						options.includeComments
 					);
 					if (!dataIsEqual(icons, lastFoundIcons)) {
 						await updateVersion(icons);
@@ -150,7 +150,7 @@ export async function mdicon2svg(
 								'}' +
 								closing
 							);
-						},
+						}
 					);
 					if (icons.length > 0) {
 						log('=== TRANSFORM HOOK');
@@ -158,7 +158,9 @@ export async function mdicon2svg(
 						// refresh. Question to ask is does the virtual module
 						// contains all the icons found in the last check?
 						return (
-							`import {${icons.map((icon) => nameToConstant(icon.name, icon.fill))}} from 'virtual:icons${virtualVersion}';` +
+							`import {${icons.map((icon) =>
+								nameToConstant(icon.name, icon.fill)
+							)}} from 'virtual:icons${virtualVersion}';` +
 							'\n' +
 							code
 						);
@@ -187,7 +189,7 @@ export async function mdicon2svg(
 										`export const ${nameToConstant(icon.name, icon.fill)} = ` +
 										'html`' +
 										icon.svg +
-										'`;',
+										'`;'
 								)
 								.join('\n');
 						// TODO: Should probably flush the previous cached versions
