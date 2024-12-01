@@ -2,3 +2,4 @@ node_modules
 .wireit
 dist
 lib
+index.js
