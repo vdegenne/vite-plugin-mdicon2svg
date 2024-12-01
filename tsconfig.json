@@ -1,9 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "ES2022",
-		"module": "Node16",
-		"moduleResolution": "Node16",
-		// "strict": true,
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
 		"useDefineForClassFields": false,
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true,
@@ -12,6 +11,9 @@
 		"declaration": true,
 		"declarationMap": true,
 		"sourceMap": true,
+		"paths": {
+			"rollup/parseAst": ["./node_modules/rollup/dist/parseAst"]
+		}
 	},
-	"include": ["./src/**/*.ts"],
+	"include": ["./src/**/*.ts"]
 }

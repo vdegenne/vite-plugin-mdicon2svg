@@ -47,7 +47,7 @@ export async function mdicon2svg(
 	let virtualVersion = 1;
 
 	let config!: ResolvedConfig;
-	let command!: 'serve' | 'build';
+	let command: 'serve' | 'build' | undefined;
 
 	let lastFoundIcons: IconData[] = [];
 
@@ -98,7 +98,7 @@ export async function mdicon2svg(
 			},
 
 			async buildStart() {
-				if (command == 'build') {
+				if (command === undefined || command == 'build') {
 					log('=== BUILDSTART HOOK');
 					const icons = await findIconsInFiles(
 						options.include!,
@@ -116,7 +116,7 @@ export async function mdicon2svg(
 
 			async transformIndexHtml(html) {
 				// Run only in dev mode
-				if (command == 'serve' && options.devMode) {
+				if (command === undefined || (command == 'serve' && options.devMode)) {
 					log('=== TRANSFORMINDEXHTML HOOK');
 					const icons = await findIconsInFiles(
 						options.include!,
@@ -135,7 +135,10 @@ export async function mdicon2svg(
 			},
 
 			transform(code, id) {
-				if ((command == 'build' || options.devMode) && filter(id)) {
+				if (
+					(command === undefined || command == 'build' || options.devMode) &&
+					filter(id)
+				) {
 					if (!options.includeComments) {
 						code = stripCommentsFromContent(code);
 					}
