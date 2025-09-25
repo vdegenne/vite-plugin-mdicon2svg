@@ -1,15 +1,12 @@
 {
 	"name": "vite-plugin-mdicon2svg",
 	"description": "Vite plugin to transform md-icon to svgs",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"type": "module",
-	"main": "./index.js",
-	"module": "./index.js",
-	"types": "./lib/index.d.ts",
 	"exports": {
 		".": {
-			"types": "./lib/index.d.ts",
-			"default": "./index.js"
+			"import": "./lib/index.js",
+			"types": "./lib/index.d.ts"
 		}
 	},
 	"keywords": [
@@ -25,8 +22,7 @@
 		"url": "https://github.com/vdegenne/vite-plugin-mdicon2svg"
 	},
 	"files": [
-		"./lib/",
-		"./index.js"
+		"./lib/"
 	],
 	"devDependencies": {
 		"@changesets/cli": "^2.29.2",
@@ -51,8 +47,7 @@
 	"wireit": {
 		"build": {
 			"dependencies": [
-				"build:ts",
-				"build:rollup"
+				"build:ts"
 			]
 		},
 		"build:ts": {
