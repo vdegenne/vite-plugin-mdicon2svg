@@ -1,7 +1,7 @@
 {
 	"name": "vite-plugin-mdicon2svg",
 	"description": "Vite plugin to transform md-icon to svgs",
-	"version": "0.2.1",
+	"version": "0.2.3",
 	"type": "module",
 	"exports": {
 		".": {
@@ -29,17 +29,18 @@
 		"@rollup/plugin-commonjs": "^28.0.3",
 		"@rollup/plugin-node-resolve": "^16.0.1",
 		"@rollup/plugin-terser": "^0.4.4",
-		"@rollup/plugin-virtual": "^3.0.2",
-		"@rollup/pluginutils": "^5.1.4",
-		"fast-glob": "^3.3.3",
-		"mwc3-back-helpers": "^1.0.3",
+		"@types/node": "^24.5.2",
 		"rollup": "^4.40.0",
 		"typescript": "^5.8.3",
 		"vite": "^6.3.3",
 		"wireit": "^0.14.12"
 	},
-	"peerDependencies": {
-		"lit-html": "^3.0.0"
+	"dependencies": {
+		"@rollup/plugin-virtual": "^3.0.2",
+		"@rollup/pluginutils": "^5.1.4",
+		"fast-glob": "^3.3.3",
+		"lit-html": "^3.0.0",
+		"mwc3-back-helpers": "^1.0.3"
 	},
 	"scripts": {
 		"build": "wireit"
