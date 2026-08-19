@@ -25,7 +25,7 @@ export async function mdicon2svg(
 	options: Partial<MdIcon2SvgOptions> = {}
 ): Promise<Plugin[]> {
 	// Defaults
-	options.include ??= 'src/**/*.{js,ts,jsx,tsx}';
+	options.include ??= './{src,lib}/**/*.{ts,js,jsx,tsx}';
 	options.variant ??= Variant.OUTLINED;
 	options.devMode ??= false;
 	options.includeComments ??= false;
